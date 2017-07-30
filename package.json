@@ -1,0 +1,18 @@
+{
+  "name": "generic-crud",
+  "version": "1.0.0",
+  "description": "A server for webservice calls that is wide open regardless of CORS.  Offers some service calls to allow the creation of a crud-style web application.  Not suitable for production for a host of reasons - this was developed to be a teaching aid.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brett Ritter <swiftone@swiftone.org>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "btoa": "^1.1.2",
+    "express": "^4.15.3",
+    "js-promisify": "^1.1.0",
+    "json-fs-store": "^1.0.1"
+  }
+}
