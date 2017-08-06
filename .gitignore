@@ -1,6 +1,11 @@
 
 node_modules/
 
+# Sekrit stuff #
+################
+/*.env
+
+
 # Editor molt #
 ###############
 *.swp

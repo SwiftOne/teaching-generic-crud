@@ -1,42 +1,47 @@
-var allServices = require('./all-services');
+const allServices = require(`./all-services`);
 
-var api = { 
+const api = {
   get: {
-    '/': 'getApi',
-    '/users/:appkey': 'getUserList',
-    '/users/:appkey/:username': 'getUserStatus',
-    '/inventory/:appkey': 'getTopicList',
-    '/inventory/:appkey/:topic': 'getTopic'
+    '/': `getApi`,
+    '/users/:appkey': `getUserListForApp`,
+    // '/users/:appkey': allServices.getUserListForApp,
+    '/users/:appkey/:username': `getUserStatusForApp`,
+    '/inventory/:appkey': `getTopicList`,
+    '/inventory/:appkey/:topic': `getTopic`
   },
   delete: {
-    '/users/:appkey/:username/session': 'logoutUser',
-    '/inventory/:appkey/:topic': 'deleteTopic',
+    '/users/:appkey/:username/session': `logoutUser`,
+    '/users/:appkey/:username/:admin': `demoteUser`,
+    '/inventory/:appkey/:topic': `deleteTopic`,
   },
   post: {
-    '/user/:appkey/:username': 'createUser',
-    '/user/:appkey/:username/:admin': 'promoteUser',
-    '/inventory/:appkey/:topic': 'createTopic',
+    '/user/:appkey/:username': `createUserForApp`,
+    '/user/:appkey/:username/session': `loginUser`,
+    '/user/:appkey/:username/:admin': `promoteUser`,
+    '/inventory/:appkey/:topic': `createTopic`,
   },
   put: {
-    '/user/:appkey/:username/session': 'updateUserSession',
-    '/user/:appkey/:username/profile': 'updateUserProfile',
-    '/inventory/:appkey/:topic': 'updateTopic'
-  } 
+    '/user/:appkey/:username/profile': `updateUserProfile`,
+    '/inventory/:appkey/:topic': `updateTopic`
+  }
 };
-var serviceDispatch = {
- 'getApi': allServices.helloWorld,
- 'getUserList': allServices.helloWorld,
- 'getUserStatus': allServices.helloWorld,
- 'getTopicList': allServices.helloWorld,
- 'getTopic': allServices.helloWorld,
- 'logoutUser': allServices.helloWorld,
- 'deleteTopic': allServices.helloWorld,
- 'createUser': allServices.helloWorld,
- 'promoteUser': allServices.helloWorld,
- 'createTopic': allServices.helloWorld,
- 'updateUserSession': allServices.helloWorld,
- 'updateUserProfile': allServices.helloWorld,
- 'updateTopic': allServices.helloWorld
+
+// TODO: can I automatically create this?
+const serviceDispatch = {
+  'getApi': allServices.getApi,
+  'getUserListForApp': allServices.getUserListForApp,
+  'getUserStatusForApp': allServices.getUserStatusForApp,
+  'getTopicList': allServices.getTopicList,
+  'getTopic': allServices.getTopic,
+  'loginUser': allServices.loginUser,
+  'logoutUser': allServices.logoutUser,
+  'deleteTopic': allServices.deleteTopic,
+  'createUserForApp': allServices.createUserForApp,
+  'promoteUser': allServices.promoteUser,
+  'demoteUser': allServices.demoteUser,
+  'createTopic': allServices.createTopic,
+  'updateUserProfile': allServices.updateUserProfile,
+  'updateTopic': allServices.updateTopic
 };
 
 module.exports = { api, serviceDispatch };
